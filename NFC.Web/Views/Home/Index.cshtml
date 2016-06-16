@@ -1,31 +1,40 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Nic's File Checker";
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="text-center" style="font-weight: bold;">Status: <span id="status" class="label label-info">Ready to start!</span></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8">
+            <div class="form-group">
+                <label for="csv">CSV:</label>
+                <textarea class="form-control" rows="3" id="csv" placeholder="Enter list here..." style="width:100% !important"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8">
+            <div class="form-group">
+                <label for="logWell">Log:</label>
+                <div class="well well-sm pre-scrollable" id="logWell" style="min-height: 350px">
+                    <span id="log"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 text-right"></div>
+        <div class="col-xs-8 text-right">
+            <input type="button" id="start" value="Start" class="btn btn-success" />
+            <input type="button" id="stop" value="Stop" class="btn btn-danger" />
+        </div>
+    </div>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+@section scripts {
+    @Scripts.Render("~/Scripts/nfc.js")
+}

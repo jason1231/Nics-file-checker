@@ -3,28 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NFC.Common.Models;
+using NFC.Common.Resources;
+using NFC.Logic;
 
 namespace NFC.Web.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        [Authorize]
+        [HttpPost]
+        public JsonResult Run(string csv)
         {
-            ViewBag.Message = "Your application description page.";
+            var fileChecker = new FileChecker();
+            var results = new List<ResultModel>();
+            var messages = new List<string>();
 
-            return View();
-        }
+            try
+            {
+                results = fileChecker.ProcessCsv(csv);
+            }
+            catch (Exception ex)
+            {
+                messages.Add(ex.Message);
+            }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return Json(new ResultsModel
+            {
+                Results = results,
+                Messages = messages
+            });
         }
     }
 }

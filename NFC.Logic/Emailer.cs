@@ -1,27 +1,59 @@
-﻿using System.Net.Mail;
-using NFC.Common.Settings;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Emailer.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Defines the Emailer type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace NFC.Logic
 {
-    public class Emailer
+    using System;
+    using System.Net.Mail;
+
+    using NFC.Common.Settings;
+    using NFC.Logic.Interfaces;
+
+    /// <summary>
+    /// The Emailer.
+    /// </summary>
+    public class Emailer : IEmailer
     {
-        public void SendEmail(string message)
+        /// <summary>
+        /// Send email
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public string SendEmail(string url)
         {
-            var mail = new MailMessage(MailSettings.To, MailSettings.From)
+            using (
+                var msg = new MailMessage(
+                    MailSettings.From, 
+                    MailSettings.To, 
+                    MailSettings.Subject, 
+                    $"The following url has been verified {url}"))
             {
-                Subject = MailSettings.Subject,
-                Body = message
-            };
+                var client = new SmtpClient
+                                 {
+                                     UseDefaultCredentials = MailSettings.UseDefaultCredeintials, 
+                                     Host = MailSettings.Host, 
+                                     Port = MailSettings.Port, 
+                                     EnableSsl = MailSettings.EnableSsl, 
+                                     DeliveryMethod = MailSettings.DeliveryMethod, 
+                                     Credentials = MailSettings.Credentials, 
+                                     Timeout = MailSettings.Timeout
+                                 };
 
-            var client = new SmtpClient()
-            {
-                Port = MailSettings.Port,
-                DeliveryMethod = MailSettings.DeliveryMethod,
-                UseDefaultCredentials = MailSettings.UseDefaultCredeintials,
-                Host = MailSettings.Host
-            };
-
-            //client.Send(mail);
+                try
+                {
+                    client.Send(msg);
+                    return "Mail has been successfully sent!";
+                }
+                catch (Exception ex)
+                {
+                    return $"Error sending email!: {ex.Message}";
+                }
+            }
         }
     }
 }

@@ -1,27 +1,31 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ResultModel.cs" company="">
+// <copyright file="LogicFactory.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   Defines the ResultModel type.
+//   Defines the LogicFactory type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NFC.Common.Models
+namespace NFC.Factory
 {
+    using NFC.Factory.Interfaces;
+    using NFC.Logic.Interfaces;
+
     /// <summary>
-    /// The result model.
+    /// The logic factory.
     /// </summary>
-    public class ResultModel
+    public class LogicFactory : ILogicFactory
     {
         /// <summary>
-        /// Gets or sets the url.
+        /// Gets or sets the emailer.
         /// </summary>
-        public string Url { get; set; }
+        public IEmailer Emailer { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether file exists.
+        /// Gets or sets the file checker.
         /// </summary>
-        public bool FileExists { get; set; }
+        public IFileChecker FileChecker { get; set; }
     }
 }
+ 

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{182B861B-17A0-4B45-97E6-6C74D6E34499}</ProjectGuid>
+    <ProjectGuid>{3B4925C3-B5AA-4782-A1FB-CDE794F48B08}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NFC.Logic</RootNamespace>
-    <AssemblyName>NFC.Logic</AssemblyName>
+    <RootNamespace>NFC.Factory</RootNamespace>
+    <AssemblyName>NFC.Factory</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,16 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Emailer.cs" />
-    <Compile Include="FileChecker.cs" />
-    <Compile Include="Interfaces\IEmailer.cs" />
-    <Compile Include="Interfaces\IFileChecker.cs" />
+    <Compile Include="Interfaces\ILogicFactory.cs" />
+    <Compile Include="LogicFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NFC.Common\NFC.Common.csproj">
-      <Project>{d96c1905-e49c-4594-8a6b-7f1421fd83fa}</Project>
-      <Name>NFC.Common</Name>
+    <ProjectReference Include="..\NFC.Logic\NFC.Logic.csproj">
+      <Project>{182b861b-17a0-4b45-97e6-6c74d6e34499}</Project>
+      <Name>NFC.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

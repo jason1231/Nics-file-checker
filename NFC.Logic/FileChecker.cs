@@ -1,14 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using NFC.Common.Models;
-using NFC.Common.Resources;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FileChecker.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Defines the FileChecker type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace NFC.Logic
 {
-    public class FileChecker
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+
+    using NFC.Common.Models;
+    using NFC.Common.Resources;
+    using NFC.Logic.Interfaces;
+
+    /// <summary>
+    /// The file checker.
+    /// </summary>
+    public class FileChecker : IFileChecker
     {
+        /// <summary>
+        /// The process csv.
+        /// </summary>
+        /// <param name="csv">
+        /// The csv.
+        /// </param>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
+        /// <exception cref="Exception">
+        /// </exception>
         public List<ResultModel> ProcessCsv(string csv)
         {
             if (string.IsNullOrWhiteSpace(csv))
@@ -30,6 +55,15 @@ namespace NFC.Logic
             return resultList;
         }
 
+        /// <summary>
+        /// The process queue item.
+        /// </summary>
+        /// <param name="url">
+        /// The url.
+        /// </param>
+        /// <returns>
+        /// The <see cref="ResultModel"/>.
+        /// </returns>
         private ResultModel ProcessQueueItem(string url)
         {
             return new ResultModel
@@ -39,6 +73,15 @@ namespace NFC.Logic
             };
         }
 
+        /// <summary>
+        /// The does file exist.
+        /// </summary>
+        /// <param name="url">
+        /// The url.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         private bool DoesFileExist(string url)
         {
             try

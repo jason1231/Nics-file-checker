@@ -1,35 +1,33 @@
 ﻿@{
     ViewBag.Title = "Nic's File Checker";
 }
+<h1 id="title">@ViewBag.Title</h1>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12">
-            <h3 class="text-center" style="font-weight: bold;">Status: <span id="status" class="label label-info">Ready to start!</span></h3>
+        <div class="col-sm-12">
+            <h3 class="text-center" id="header">Status: <span id="status" class="label label-info">Ready to start!</span></h3>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-2"></div>
-        <div class="col-xs-8">
+        <div class="col-sm-offset-2 col-sm-8">
             <div class="form-group">
-                <label for="csv">CSV:</label>
-                <textarea class="form-control" rows="3" id="csv" placeholder="Enter list here..." style="width:100% !important"></textarea>
+                <label for="csvs">CSV:</label>
+                <textarea class="form-control" rows="3" id="csvs" placeholder="Enter list here..."></textarea>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-2"></div>
-        <div class="col-xs-8">
+        <div class="col-sm-offset-2 col-sm-8">
             <div class="form-group">
                 <label for="logWell">Log:</label>
-                <div class="well well-sm pre-scrollable" id="logWell" style="min-height: 350px">
+                <div class="well well-sm pre-scrollable" id="logWell">
                     <span id="log"></span>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-2 text-right"></div>
-        <div class="col-xs-8 text-right">
+        <div class="col-sm-offset-2 col-sm-8 text-right">
             <input type="button" id="start" value="Start" class="btn btn-success" />
             <input type="button" id="stop" value="Stop" class="btn btn-danger" />
         </div>
